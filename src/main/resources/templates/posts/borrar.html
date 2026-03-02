@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Insertar</title>
+    <!-- CSS de Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- CSS personalizado -->
+    <!-- <link href="/estilos.css" rel="stylesheet" />-->
+  </head>
+
+  <body>
+    <div class="container">
+      <form
+        th:action="@{/posts/borrar}"
+        th:object="${registro}"
+        method="post"
+        class="col-12"
+      >
+        <div class="row mb-3">
+          <label class="form-label">Id del Post:</label>
+          <label class="form-control" th:text="${registro.getId()}" />
+          <input
+            class="d-none"
+            type="number"
+            id="id"
+            name="id"
+            th:value="${registro.getId()}"
+          />
+        </div>
+        <div class="row mb-3">
+          <label class="form-label">Id del usuario:</label>
+          <label class="form-control" th:text="${registro.getUserId()}" />
+        </div>
+        <div class="row mb-3">
+          <label class="form-label">Título del Post:</label>
+          <label class="form-control" th:text="${registro.getTitulo()}" />
+        </div>
+        <div class="row mb-3">
+          <label class="form-label">Cuerpo del Post:</label>
+          <label class="form-control" th:text="${registro.getCuerpo()}" />
+        </div>
+        <div class="d-flex justify-content-around">
+          <a class="btn btn-primary col-5" th:href="@{/posts/todos}"
+            >Listar Posts</a
+          >
+
+          <button
+            type="submit"
+            th:href="@{/posts/borrar}"
+            class="btn btn-success col-5"
+          >
+            Borrar
+          </button>
+        </div>
+      </form>
+    </div>
+    <!-- JS de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

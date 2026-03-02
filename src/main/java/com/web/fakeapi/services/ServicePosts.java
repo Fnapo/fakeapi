@@ -124,4 +124,25 @@ public class ServicePosts {
               + LocalDateTime.now());
     }
   }
+
+  public void borrar(long id) {
+    try {
+      HttpRequest request = HttpRequest.newBuilder()
+          .uri(new URI(url + "/" + id))
+          .DELETE()
+          .build();
+
+      HttpResponse<String> respuesta = clientePosts.send(request, HttpResponse.BodyHandlers.ofString());
+
+      if (respuesta.statusCode() < 300) {
+        System.out.println("Correcto");
+      } else {
+        System.out.println("Error");
+      }
+    } catch (Exception e) {
+      System.err.println(
+          "Error: La petición Post ha lanzado una excepción -> " + e.getMessage() + " A las: "
+              + LocalDateTime.now());
+    }
+  }
 }

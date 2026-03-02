@@ -4,7 +4,6 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -77,16 +76,23 @@ public class ControllerPosts {
     return "redirect:/posts/todos";
   }
 
-  @DeleteMapping("/borrar/{id}")
+  @GetMapping("/borrar/{id}")
   public String borrar(@PathVariable long id, Model model) {
     PostDto registro = servicio.buscarId(id);
 
     if (registro == null) {
       return "redirect:/posts/todos";
     }
-    model.addAttribute("borrado", registro);
+    model.addAttribute("registro", registro);
 
     return "/posts/borrar";
   }
 
+  // @GetMapping("/delete/{id}")
+  @PostMapping("/borrar")
+  public String borrar(@ModelAttribute PostDto registro) {
+    servicio.borrar(registro.getId());
+
+    return "redirect:/posts/todos";
+  }
 }

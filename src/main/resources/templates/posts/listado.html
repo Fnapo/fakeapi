@@ -39,7 +39,11 @@
                   th:href="@{/posts/actualizar/{id}(id=${post.getId()})}"
                   >Actualizar</a
                 >
-                <a class="btn btn-danger col-3" href="#">Borrar</a>
+                <a
+                  class="btn btn-danger col-3"
+                  th:href="@{/posts/borrar/{id}(id=${post.getId()})}"
+                  >Borrar</a
+                >
               </div>
             </td>
           </tr>
